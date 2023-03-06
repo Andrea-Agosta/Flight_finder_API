@@ -10,8 +10,6 @@ ALTER TABLE public.route OWNER to postgres;
 
 CREATE TABLE public.itineraries(
   flight_id VARCHAR(50) NOT NULL,
-  -- departure_at VARCHAR(50) NOT NULL,
-  -- arrival_at VARCHAR(50) NOT NULL,
   departure_at TIMESTAMPTZ NOT NULL,
   arrival_at TIMESTAMPTZ NOT NULL,
   available_seats INT NOT NULL,

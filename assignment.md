@@ -1,5 +1,4 @@
 # PGP test Flight finder v2
-<hr style='background-color: gray;'>
 
 ## Background
 A newly started flight booker company needs your help, and they need it quickly! They’re supposed to publish their application and business within two weeks but haven't even gotten started on the booking-page itself. They have the frontend part under control, that’s for an external consultant to fix for them, but they need you to fix the backend! The requirements won’t tell you everything, some of the parts of the backend you’ll have to figure out yourself! 
