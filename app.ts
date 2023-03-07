@@ -1,4 +1,4 @@
-import flight from 'api/flight';
+import flight from './src/api/flight';
 import express, { Application, Request, Response, NextFunction } from 'express';
 
 

@@ -10,7 +10,7 @@
     "server": "nodemon server.ts",
     "resetdata": "rimraf data",
     "docker:start": "docker compose up",
-    "seeder": "node containerConfig/dbSeeder.js",
+    "seeder": "node src/containerConfig/dbSeeder.js",
     "docker:close": "docker compose down",
     "docker:init": "npm run resetdata && npm run docker:start"
   },
