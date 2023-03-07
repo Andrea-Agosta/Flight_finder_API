@@ -11,6 +11,7 @@ router.post('/signup', passport.authenticate('signup', { session: false }), asyn
     if (!process.env.TOP_SECRET) {
       throw new Error('Missing TOP_SECRET environment variable');
     }
+
     const body = { email: req.body.email, role: req.body.role };
     const token = jwt.sign({ user: body }, process.env.TOP_SECRET, { expiresIn: '1h' });
     res.cookie('auth', token).json({

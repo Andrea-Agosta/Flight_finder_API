@@ -1,6 +1,6 @@
 const dotenv = require("dotenv");
 dotenv.config();
-const mockData = require('../../mockData.json');
+const mockData = require('../mockData.json');
 const { Pool } = require("pg");
 
 

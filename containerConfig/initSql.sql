@@ -34,12 +34,28 @@ CREATE TABLE public.price(
 
 ALTER TABLE public.price OWNER to postgres;
 
-CREATE TABLE public.user(
-  id SERIAL PRIMARY KEY,
+CREATE TABLE public.user_data(
+  user_id SERIAL PRIMARY KEY,
   email VARCHAR(50) NOT NULL,
   password VARCHAR(200) NOT NULL,
   role VARCHAR(11) NOT NULL,
   CONSTRAINT constraint_email UNIQUE (email)
 );
 
-ALTER TABLE public.price OWNER to postgres;
+ALTER TABLE public.user_data OWNER to postgres;
+
+CREATE TABLE public.history(
+  history_id SERIAL PRIMARY KEY,
+  user_id INT,
+  flight_id VARCHAR(50),
+  n_ticket INT NOT NULL,
+  booking_date TIMESTAMPTZ NOT NULL,
+  CONSTRAINT fk_user
+    FOREIGN KEY(user_id) 
+	    REFERENCES user_data(user_id),
+  CONSTRAINT fk_itineraries
+    FOREIGN KEY(flight_id) 
+	    REFERENCES itineraries(flight_id)
+);
+
+ALTER TABLE public.history OWNER to postgres;
