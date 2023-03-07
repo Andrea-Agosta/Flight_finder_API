@@ -132,9 +132,9 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-/data/
 /.DS_store
 /.idea
 server.js
-/containerConfig/psql.env
 containerConfig/.DS_Store
+/containerConfig/psql.env
+/data
