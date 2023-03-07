@@ -33,3 +33,13 @@ CREATE TABLE public.price(
 );
 
 ALTER TABLE public.price OWNER to postgres;
+
+CREATE TABLE public.user(
+  id SERIAL PRIMARY KEY,
+  email VARCHAR(50) NOT NULL,
+  password VARCHAR(200) NOT NULL,
+  role VARCHAR(11) NOT NULL,
+  CONSTRAINT constraint_email UNIQUE (email)
+);
+
+ALTER TABLE public.price OWNER to postgres;

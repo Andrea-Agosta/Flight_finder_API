@@ -6,7 +6,4 @@ const { compilerOptions } = require('./tsconfig.json');
   testEnvironment: 'node',
   coveragePathIgnorePatterns: ['/node_modules/'],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths),
-  // testMatch: [
-  //   "__test__/**/*.test.ts"
-  // ]
-};
+}
