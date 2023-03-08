@@ -1,20 +1,13 @@
 import { connectionDB } from "../database/dbConnections";
 import { IFlights } from "../type/flight";
 
+export const getFlight = async (query: string): Promise<IFlights[]> => {
+  console.log('query', query);
+  return await connectionDB(query);
+}
+
 export const getFlightById = async (flightId: string): Promise<IFlights[]> => {
   const query: string = `SELECT * FROM itineraries where flight_id = '${flightId}'`;
-  return await connectionDB(query);
-};
-
-export const getFlightByLocations = async (departure: string, arrival: string): Promise<IFlights[]> => {
-  const query: string = `SELECT * FROM itineraries where itineraries_id = (
-    SELECT route_id from route where departure_destination = '${departure}' and arrival_destination = '${arrival}'
-  ) AND available_seats > 0;`;
-  return await connectionDB(query);
-};
-
-export const getFlightByTime = async (timeDep: string, timeArr: string): Promise<IFlights[]> => {
-  const query: string = `SELECT * FROM itineraries WHERE departure_at = '${timeDep}' AND arrival_at = '${timeArr}' AND available_seats > 0;`;
   return await connectionDB(query);
 };
 
