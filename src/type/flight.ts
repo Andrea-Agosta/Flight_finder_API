@@ -9,6 +9,10 @@ export interface IFlightsParams {
   arrival_time_range: string;
   price: number;
   price_range: number;
+  available_seats: number;
+  price_adult: number;
+  price_child: number;
+  currency: string;
 }
 
 export interface IFlights {

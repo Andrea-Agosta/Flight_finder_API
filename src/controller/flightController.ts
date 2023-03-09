@@ -1,6 +1,7 @@
 import { getUserByEmail } from "../dbRepository/userRepository";
-import { addFlightToHistory, bookNewFlight, getFlight, getFlightById } from "../dbRepository/flightRepository";
+import { addFlightToHistory, bookNewFlight, createItinerary, createRouteAndItinerary, getFlight, getFlightById } from "../dbRepository/flightRepository";
 import { IFlights, IFlightsParams } from "../type/flight";
+import { v4 as uuidv4 } from 'uuid';
 
 export const getFlights = async ({ departure_destination, arrival_destination, departure_date, departure_time, departure_time_range, arrival_date, arrival_time, arrival_time_range, price, price_range }: IFlightsParams): Promise<IFlights[]> => {
   let query = `SELECT i.*, r.*, p.* FROM public.itineraries AS i 
@@ -119,3 +120,17 @@ export const bookFlight = async ({ email, flight_id, nticket }: { email: string,
   }
   throw new Error('bad request');
 }
+
+export const createNewFlight = async ({ departure_destination, arrival_destination, departure_date, departure_time, arrival_date, arrival_time, available_seats, currency, price_adult, price_child }: IFlightsParams): Promise<string> => {
+  if (departure_destination && arrival_destination && departure_date && departure_time && arrival_date && arrival_time && available_seats && currency && price_adult && price_child) {
+    const query: string = `SELECT * FROM route WHERE departure_destination = '${departure_destination} and arrival_destination = '${arrival_destination}'`;
+    const chekRoute = await getFlight(query);
+    const flight_id = uuidv4();
+    const route_id = uuidv4();
+    return (chekRoute.length > 0 && chekRoute[0]) ?
+      createItinerary(flight_id, departure_date, departure_time, arrival_date, arrival_time, available_seats, chekRoute[0].itineraries_id, currency, price_adult, price_child)
+      :
+      createRouteAndItinerary(route_id, departure_destination, arrival_destination, flight_id, departure_date, departure_time, arrival_date, arrival_time, available_seats, route_id, currency, price_adult, price_child);
+  }
+  throw new Error('bad request');
+};
