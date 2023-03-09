@@ -23,5 +23,4 @@ describe('Testing api/flight route', () => {
     const res = await request(app).get('/api/flight/locations?departure_date=2023-03-29&arrival_date=2023-103-29');
     expect(res.statusCode).toEqual(400);
   });
-
 });
