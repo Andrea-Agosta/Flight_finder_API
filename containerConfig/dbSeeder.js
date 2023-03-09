@@ -37,7 +37,13 @@ const dbSeeder = async () => {
     route = mockData[i];
     for (let j = 0; j < route.itineraries.length; j++) {
       itineraries = route.itineraries[j];
-      const query = `INSERT INTO itineraries (flight_id, departure_at, arrival_at, available_seats, itineraries_id) VALUES ('${itineraries.flight_id}','${itineraries.departureAt}', '${itineraries.arrivalAt}', ${itineraries.availableSeats}, '${route.route_id}')`;
+      const timestampDeparture = new Date(itineraries.departureAt);
+      const timestampArrival = new Date(itineraries.arrivalAt);
+      const query = `INSERT INTO itineraries 
+        (flight_id, departure_date, departure_time, arrival_date, arrival_time, available_seats, itineraries_id) 
+        VALUES ('${itineraries.flight_id}','${timestampDeparture.toISOString().slice(0, 10)}', '${timestampDeparture.toTimeString().slice(0, 8)}',
+        '${timestampArrival.toISOString().slice(0, 10)}', '${timestampArrival.toTimeString().slice(0, 8)}', ${itineraries.availableSeats}, '${route.route_id}'
+      )`;
       await connectToDB(query);
     }
   }
