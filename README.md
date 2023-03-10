@@ -4,7 +4,7 @@ This is a Flight Finder application built using Node.js and Express. The applica
 ### Routes
 
 - `/api/auth`: API route for user authentication and registration. This route uses passport.js for user authentication and saves the JWT token in a cookie, which is sent back to the client.
-- `/api/flight`: API route for searching flights. Users can search for flights using price and time ranges. If a direct flight is not available, the route will return all possible connections with stops. This route also includes the following features:
+- `/api/flight`: API route for searching flights. Users can search for flights using price and time ranges filters. If a direct flight is not available, the route will return all possible connections with stops. This route also includes the following features:
   - A protected POST request for registered users to book flights. Once a flight is booked, the   corresponding seat is removed and the data is saved in the history table in the database.
   - A protected POST request for admin users to add new flights to the database.
 - `/api/user`: API route for updating, getting, and deleting user information. This route is protected and can only be accessed by authenticated users
@@ -28,7 +28,7 @@ $ npm install
 ```
  Once the dependencies are installed, rename your `EXAMPLE.env` and update it with your data. 
  
- After inside the directory `containerConfig` rename the `EXAMPLE_psql.env` file and update with your data.
+ Inside the directory `containerConfig` rename the `EXAMPLE_psql.env` file and update it with your data.
  
  Now you can start the development server with the following command:
 
